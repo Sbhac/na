@@ -533,6 +533,104 @@
         color: var(--orange);
       }
 
+      .registration-layout {
+        display: grid;
+        grid-template-columns: 0.75fr 1fr;
+        align-items: start;
+        gap: 64px;
+      }
+
+      .registration-intro {
+        max-width: 390px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .registration-form {
+        display: grid;
+        gap: 17px;
+      }
+
+      .registration-field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .registration-field label {
+        color: var(--muted);
+        font-size: 10px;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+
+      .registration-field input {
+        width: 100%;
+        min-height: 52px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        outline: none;
+        background: #11140f;
+        color: var(--paper);
+        font: inherit;
+        font-size: 14px;
+      }
+
+      .registration-field input:focus {
+        border-color: var(--acid);
+      }
+
+      .registration-consent {
+        display: flex;
+        align-items: start;
+        gap: 11px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .registration-consent input {
+        width: 16px;
+        height: 16px;
+        flex: 0 0 auto;
+        margin: 1px 0 0;
+        accent-color: var(--acid);
+      }
+
+      .registration-submit {
+        justify-self: start;
+        cursor: pointer;
+      }
+
+      .registration-submit:disabled {
+        cursor: wait;
+        opacity: 0.65;
+      }
+
+      .registration-status {
+        min-height: 22px;
+        margin: 0;
+        color: var(--acid);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .registration-status[data-state="error"] {
+        color: var(--orange);
+      }
+
+      .registration-trap,
+      .registration-frame {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+      }
+
       .footer {
         padding-block: 22px;
         border-top: 1px solid var(--line);
@@ -737,7 +835,8 @@
         }
 
         .about-grid,
-        .contact-band {
+        .contact-band,
+        .registration-layout {
           grid-template-columns: 1fr;
           gap: 24px;
         }
@@ -867,8 +966,9 @@
               <a href="#education">Education</a>
               <a href="#skills">Skills</a>
               <a href="#projects">Projects</a>
+              <a href="#register">Register</a>
             </nav>
-            <a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+            <a class="nav-cta" href="#register">Register interest <span aria-hidden="true">↗</span></a>
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
           </header>
 
@@ -1084,9 +1184,46 @@
         </div>
       </section>
 
+      <section class="section" id="register">
+        <div class="section-inner reveal">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">07 / Stay connected</p>
+              <h2>Leave your <em>details.</em></h2>
+            </div>
+            <span class="section-index">NAME / MOBILE</span>
+          </div>
+          <div class="registration-layout">
+            <p class="registration-intro">Share your name and mobile number if you'd like me to get in touch about an opportunity. Your details will be stored in a private Google Sheet and won't be displayed publicly.</p>
+            <form class="registration-form" id="registration-form" action="#register" method="post" target="registration-frame">
+              <div class="registration-field">
+                <label for="visitor-name">Your name</label>
+                <input id="visitor-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required />
+              </div>
+              <div class="registration-field">
+                <label for="visitor-phone">Mobile number</label>
+                <input id="visitor-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+\s\-]{7,24}" maxlength="24" required />
+              </div>
+              <label class="registration-consent">
+                <input name="consent" type="checkbox" value="yes" required />
+                <span>I agree to share my name and mobile number so Swarup can contact me. I can ask for my details to be removed.</span>
+              </label>
+              <div class="registration-trap" aria-hidden="true">
+                <label for="visitor-website">Leave this field empty</label>
+                <input id="visitor-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+              <input id="registration-request-id" name="requestId" type="hidden" />
+              <button class="button-primary registration-submit" type="submit">Send details <span aria-hidden="true">↗</span></button>
+              <p class="registration-status" id="registration-status" role="status" aria-live="polite"></p>
+              <iframe class="registration-frame" name="registration-frame" title="Registration response" aria-hidden="true"></iframe>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <section class="section-inner contact-band reveal" id="contact">
         <div>
-          <p class="section-kicker">07 / Get in touch</p>
+          <p class="section-kicker">08 / Get in touch</p>
           <h2>Let's create<br /><em>something valuable.</em></h2>
         </div>
         <div class="contact-details">
@@ -1111,7 +1248,14 @@
         const navigation = document.querySelector('#site-nav');
         const video = document.querySelector('.hero__video');
         const year = document.querySelector('#current-year');
+        const registrationForm = document.querySelector('#registration-form');
+        const registrationStatus = document.querySelector('#registration-status');
+        const registrationButton = registrationForm.querySelector('button[type="submit"]');
+        const registrationRequestId = document.querySelector('#registration-request-id');
+        const sheetEndpoint = '';
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let activeRequestId = '';
+        let registrationTimer;
 
         year.textContent = new Date().getFullYear();
 
@@ -1127,6 +1271,51 @@
             menuButton.setAttribute('aria-expanded', 'false');
             navigation.classList.remove('is-open');
             menuButton.textContent = 'Menu';
+          }
+        });
+
+        const endpointIsConfigured = /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(sheetEndpoint);
+        if (endpointIsConfigured) {
+          registrationForm.action = sheetEndpoint;
+        }
+
+        registrationForm.addEventListener('submit', (event) => {
+          if (!endpointIsConfigured) {
+            event.preventDefault();
+            registrationStatus.dataset.state = 'error';
+            registrationStatus.textContent = 'The registration sheet is not connected yet. Please contact me by email or phone for now.';
+            return;
+          }
+
+          activeRequestId = crypto.randomUUID();
+          registrationRequestId.value = activeRequestId;
+          registrationButton.disabled = true;
+          registrationStatus.dataset.state = 'pending';
+          registrationStatus.textContent = 'Sending your details...';
+          window.clearTimeout(registrationTimer);
+          registrationTimer = window.setTimeout(() => {
+            if (!activeRequestId) return;
+            activeRequestId = '';
+            registrationButton.disabled = false;
+            registrationStatus.dataset.state = 'error';
+            registrationStatus.textContent = 'No confirmation received. Please check before submitting again, or contact me directly.';
+          }, 20000);
+        });
+
+        window.addEventListener('message', (event) => {
+          const trustedOrigin = event.origin === 'https://script.google.com' || event.origin.endsWith('.googleusercontent.com');
+          if (!trustedOrigin || event.data?.type !== 'portfolio-registration-result' || event.data.requestId !== activeRequestId) return;
+
+          window.clearTimeout(registrationTimer);
+          activeRequestId = '';
+          registrationButton.disabled = false;
+          if (event.data.ok) {
+            registrationForm.reset();
+            registrationStatus.dataset.state = 'success';
+            registrationStatus.textContent = 'Thank you. Your details were saved; I will be in touch.';
+          } else {
+            registrationStatus.dataset.state = 'error';
+            registrationStatus.textContent = 'We could not save your details. Please try again later or contact me directly.';
           }
         });
 
