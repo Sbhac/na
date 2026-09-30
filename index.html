@@ -565,7 +565,8 @@
         text-transform: uppercase;
       }
 
-      .registration-field input {
+      .registration-field input,
+      .registration-field textarea {
         width: 100%;
         min-height: 52px;
         padding: 0 14px;
@@ -578,7 +579,14 @@
         font-size: 14px;
       }
 
-      .registration-field input:focus {
+      .registration-field textarea {
+        min-height: 130px;
+        padding-block: 14px;
+        resize: vertical;
+      }
+
+      .registration-field input:focus,
+      .registration-field textarea:focus {
         border-color: var(--acid);
       }
 
@@ -1194,7 +1202,7 @@
             <span class="section-index">NAME / MOBILE</span>
           </div>
           <div class="registration-layout">
-            <p class="registration-intro">Share your name and mobile number if you'd like me to get in touch about an opportunity. Your details will be stored in a private Google Sheet and won't be displayed publicly.</p>
+              <p class="registration-intro">Leave your name, mobile number, and a review. Your details and review will be stored in a private Google Sheet and won't be displayed publicly.</p>
             <form class="registration-form" id="registration-form" action="#register" method="post" target="registration-frame">
               <div class="registration-field">
                 <label for="visitor-name">Your name</label>
@@ -1204,9 +1212,13 @@
                 <label for="visitor-phone">Mobile number</label>
                 <input id="visitor-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+\s\-]{7,24}" maxlength="24" required />
               </div>
+              <div class="registration-field">
+                <label for="visitor-review">Your review</label>
+                <textarea id="visitor-review" name="review" rows="4" minlength="3" maxlength="1000" required></textarea>
+              </div>
               <label class="registration-consent">
                 <input name="consent" type="checkbox" value="yes" required />
-                <span>I agree to share my name and mobile number so Swarup can contact me. I can ask for my details to be removed.</span>
+                <span>I agree to share my name, mobile number, and review with Swarup. I can ask for my details to be removed.</span>
               </label>
               <div class="registration-trap" aria-hidden="true">
                 <label for="visitor-website">Leave this field empty</label>
@@ -1252,7 +1264,7 @@
         const registrationStatus = document.querySelector('#registration-status');
         const registrationButton = registrationForm.querySelector('button[type="submit"]');
         const registrationRequestId = document.querySelector('#registration-request-id');
-        const sheetEndpoint = '';
+        const sheetEndpoint = 'https://script.google.com/macros/s/AKfycbw1l_w294w4pTqv9m5j9aC_ewFdP0F2OOAfFO4uCpmfwXLNTfoFM4XTIQJyljjIehT41A/exec';
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         let activeRequestId = '';
         let registrationTimer;
