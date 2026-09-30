@@ -2,12 +2,1162 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-portfolio</title>
+    <meta name="theme-color" content="#090b09" />
+    <meta name="description" content="Swarup Bandagale — MBA Finance professional and Accounts Executive focused on accurate, efficient financial operations." />
+    <title>Swarup Bandagale — Finance &amp; Accounts</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #090b09;
+        --paper: #f2f0e9;
+        --muted: #a3a69e;
+        --line: rgba(242, 240, 233, 0.18);
+        --acid: #d9ff62;
+        --orange: #f1a16c;
+        --page-width: 1240px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        scroll-behavior: smooth;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      body,
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        color: inherit;
+        font: inherit;
+      }
+
+      .hero {
+        position: relative;
+        display: flex;
+        min-height: 720px;
+        min-height: 100svh;
+        overflow: hidden;
+        isolation: isolate;
+        background: #11150f;
+      }
+
+      .hero__video,
+      .hero__shade {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero__video {
+        object-fit: cover;
+        object-position: center;
+        filter: saturate(0.72) brightness(0.76);
+      }
+
+      .hero__shade {
+        background:
+          linear-gradient(90deg, rgba(7, 10, 7, 0.88) 0%, rgba(7, 10, 7, 0.58) 48%, rgba(7, 10, 7, 0.23) 100%),
+          linear-gradient(0deg, rgba(7, 10, 7, 0.84) 0%, transparent 35%, rgba(7, 10, 7, 0.3) 100%);
+      }
+
+      .hero__inner,
+      .section-inner,
+      .footer__inner {
+        width: min(var(--page-width), calc(100% - 96px));
+        margin-inline: auto;
+      }
+
+      .hero__inner {
+        display: flex;
+        min-height: 100svh;
+        flex-direction: column;
+      }
+
+      .topbar {
+        display: flex;
+        min-height: 92px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .wordmark {
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .wordmark span {
+        color: var(--acid);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        color: rgba(242, 240, 233, 0.77);
+        font-size: 12px;
+      }
+
+      .nav-links a,
+      .text-link {
+        transition: color 180ms ease;
+      }
+
+      .nav-links a:hover,
+      .text-link:hover {
+        color: var(--acid);
+      }
+
+      .nav-cta,
+      .button-primary,
+      .button-outline {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 0 19px;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        font-size: 11px;
+        font-weight: 700;
+        transition: background 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+      }
+
+      .nav-cta:hover,
+      .button-outline:hover {
+        border-color: var(--acid);
+        color: var(--acid);
+        transform: translateY(-2px);
+      }
+
+      .menu-toggle {
+        display: none;
+        min-width: 46px;
+        min-height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 2px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .hero__body {
+        display: grid;
+        flex: 1;
+        grid-template-columns: minmax(0, 1fr) 250px;
+        align-items: center;
+        gap: 48px;
+        padding-block: 72px 100px;
+      }
+
+      .hero__copy {
+        max-width: 800px;
+        animation: rise-in 850ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+
+      .eyebrow,
+      .section-kicker {
+        margin: 0 0 23px;
+        color: var(--acid);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2.8px;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .availability {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 33px;
+        color: rgba(242, 240, 233, 0.86);
+        font-size: 9px;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+      }
+
+      .availability__dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--acid);
+        box-shadow: 0 0 15px rgba(217, 255, 98, 0.72);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 920px;
+        margin-bottom: 24px;
+        font-size: 118px;
+        font-weight: 700;
+        letter-spacing: 0;
+        line-height: 0.88;
+        text-transform: uppercase;
+      }
+
+      h1 span {
+        display: block;
+        color: var(--acid);
+      }
+
+      .hero__description {
+        max-width: 520px;
+        margin-bottom: 0;
+        color: rgba(242, 240, 233, 0.76);
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        margin-top: 34px;
+      }
+
+      .button-primary {
+        border-color: var(--acid);
+        background: var(--acid);
+        color: #11150b;
+      }
+
+      .button-primary:hover {
+        border-color: var(--paper);
+        background: var(--paper);
+        transform: translateY(-2px);
+      }
+
+      .hero__aside {
+        align-self: end;
+        padding-bottom: 5px;
+        animation: rise-in 850ms 180ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+
+      .aside-item {
+        padding: 16px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .aside-item:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .aside-item span {
+        display: block;
+        margin-bottom: 8px;
+        color: rgba(242, 240, 233, 0.56);
+        font-size: 9px;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+      }
+
+      .aside-item strong {
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .hero__foot {
+        display: flex;
+        min-height: 66px;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--line);
+        color: rgba(242, 240, 233, 0.7);
+        font-size: 9px;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+      }
+
+      .hero__foot a {
+        color: var(--acid);
+      }
+
+      .section {
+        padding-block: 112px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 52px;
+      }
+
+      .section-kicker {
+        margin-bottom: 17px;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: 60px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 1;
+      }
+
+      h2 em {
+        color: var(--acid);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-weight: 400;
+      }
+
+      .section-index {
+        padding-bottom: 7px;
+        color: var(--muted);
+        font-size: 10px;
+        letter-spacing: 1.7px;
+        white-space: nowrap;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: 70px;
+      }
+
+      .about-note {
+        color: var(--orange);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 28px;
+        font-style: italic;
+        line-height: 1.35;
+      }
+
+      .body-copy {
+        max-width: 700px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .experience-row,
+      .education-row,
+      .cert-row,
+      .project-row {
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr) 40px;
+        align-items: start;
+        gap: 28px;
+        padding: 27px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .experience-row:last-child,
+      .education-row:last-child,
+      .cert-row:last-child,
+      .project-row:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .row-label {
+        padding-top: 5px;
+        color: var(--acid);
+        font-size: 10px;
+        letter-spacing: 1.4px;
+        line-height: 1.7;
+        text-transform: uppercase;
+      }
+
+      .row-main h3 {
+        margin-bottom: 9px;
+        font-size: 23px;
+        font-weight: 600;
+      }
+
+      .row-main p {
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.75;
+      }
+
+      .row-main p:last-child {
+        margin-bottom: 0;
+      }
+
+      .row-arrow {
+        color: var(--orange);
+        font-size: 19px;
+        text-align: right;
+      }
+
+      .education-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 44px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+
+      .skill {
+        min-height: 190px;
+        padding: 24px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .skill__number {
+        display: block;
+        margin-bottom: 38px;
+        color: var(--orange);
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+
+      .skill h3 {
+        margin-bottom: 9px;
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      .skill p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+
+      .cert-list {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cert-row {
+        grid-template-columns: 150px minmax(0, 1fr) 120px;
+      }
+
+      .cert-result {
+        color: var(--muted);
+        font-size: 11px;
+        text-align: right;
+      }
+
+      .project-row {
+        grid-template-columns: 135px minmax(0, 1fr) 48px;
+        align-items: center;
+        transition: padding 180ms ease, color 180ms ease;
+      }
+
+      .project-row:hover {
+        padding-inline: 12px;
+        color: var(--acid);
+      }
+
+      .project-row:hover .row-main p {
+        color: rgba(242, 240, 233, 0.82);
+      }
+
+      .project-row .row-arrow {
+        font-size: 24px;
+      }
+
+      .contact-band {
+        display: grid;
+        grid-template-columns: 1fr 0.7fr;
+        align-items: end;
+        gap: 50px;
+        padding-block: 100px;
+      }
+
+      .contact-band h2 {
+        max-width: 700px;
+        font-size: 72px;
+      }
+
+      .contact-details {
+        display: grid;
+        gap: 0;
+      }
+
+      .contact-link {
+        display: flex;
+        min-height: 55px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+        transition: color 180ms ease;
+      }
+
+      .contact-link:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .contact-link:hover {
+        color: var(--acid);
+      }
+
+      .contact-link span:last-child {
+        color: var(--orange);
+      }
+
+      .footer {
+        padding-block: 22px;
+        border-top: 1px solid var(--line);
+      }
+
+      .footer__inner {
+        display: flex;
+        min-height: 40px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        color: var(--muted);
+        font-size: 10px;
+      }
+
+      .footer__inner .wordmark {
+        color: var(--paper);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 650ms ease, transform 650ms ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes rise-in {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (max-width: 900px) {
+        .hero__inner,
+        .section-inner,
+        .footer__inner {
+          width: min(var(--page-width), calc(100% - 56px));
+        }
+
+        .hero__body {
+          grid-template-columns: minmax(0, 1fr) 190px;
+          gap: 24px;
+        }
+
+        h1 {
+          font-size: 88px;
+        }
+
+        .nav-links {
+          gap: 19px;
+        }
+
+        .about-grid {
+          grid-template-columns: 0.8fr 1.2fr;
+          gap: 40px;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .contact-band h2 {
+          font-size: 58px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          min-height: 760px;
+          min-height: 100svh;
+        }
+
+        .hero__inner,
+        .section-inner,
+        .footer__inner {
+          width: calc(100% - 40px);
+        }
+
+        .hero__video {
+          object-position: 58% center;
+        }
+
+        .hero__shade {
+          background:
+            linear-gradient(90deg, rgba(7, 10, 7, 0.78), rgba(7, 10, 7, 0.44)),
+            linear-gradient(0deg, rgba(7, 10, 7, 0.91), transparent 62%, rgba(7, 10, 7, 0.35));
+        }
+
+        .topbar {
+          min-height: 72px;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          letter-spacing: 1px;
+        }
+
+        .nav-cta {
+          display: none;
+        }
+
+        .nav-links {
+          position: absolute;
+          z-index: 3;
+          top: 72px;
+          right: 20px;
+          left: 20px;
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 8px 18px;
+          border: 1px solid var(--line);
+          background: rgba(9, 11, 9, 0.96);
+          backdrop-filter: blur(12px);
+        }
+
+        .nav-links.is-open {
+          display: flex;
+        }
+
+        .nav-links a {
+          padding: 15px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .nav-links a:last-child {
+          border-bottom: 0;
+        }
+
+        .hero__body {
+          grid-template-columns: 1fr;
+          align-content: center;
+          gap: 38px;
+          padding-block: 64px 58px;
+        }
+
+        .availability {
+          margin-bottom: 25px;
+        }
+
+        h1 {
+          margin-bottom: 20px;
+          font-size: 62px;
+          line-height: 0.94;
+        }
+
+        .hero__description {
+          max-width: 450px;
+          font-size: 14px;
+        }
+
+        .hero__actions {
+          gap: 10px;
+          margin-top: 26px;
+        }
+
+        .hero__aside {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 18px;
+          align-self: auto;
+        }
+
+        .aside-item {
+          padding: 12px 0;
+        }
+
+        .aside-item:last-child {
+          border-bottom: 0;
+        }
+
+        .aside-item strong {
+          font-size: 12px;
+        }
+
+        .hero__foot {
+          min-height: 56px;
+          font-size: 8px;
+        }
+
+        .section {
+          padding-block: 76px;
+        }
+
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+          gap: 16px;
+          margin-bottom: 34px;
+        }
+
+        h2 {
+          font-size: 42px;
+          line-height: 1.03;
+        }
+
+        .about-grid,
+        .contact-band {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .about-note {
+          max-width: 320px;
+          font-size: 25px;
+        }
+
+        .body-copy {
+          font-size: 14px;
+        }
+
+        .experience-row,
+        .education-row,
+        .cert-row,
+        .project-row {
+          grid-template-columns: 1fr 28px;
+          gap: 8px 15px;
+          padding: 21px 0;
+        }
+
+        .row-label {
+          grid-column: 1 / -1;
+        }
+
+        .row-main h3 {
+          font-size: 19px;
+        }
+
+        .row-main p {
+          font-size: 12px;
+        }
+
+        .row-arrow {
+          grid-column: 2;
+          grid-row: 2;
+        }
+
+        .education-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .skill {
+          min-height: 180px;
+          padding: 18px;
+        }
+
+        .skill__number {
+          margin-bottom: 30px;
+        }
+
+        .skill h3 {
+          font-size: 15px;
+        }
+
+        .cert-row {
+          grid-template-columns: 1fr auto;
+        }
+
+        .cert-result {
+          grid-column: 2;
+          grid-row: 2;
+          text-align: right;
+        }
+
+        .project-row {
+          grid-template-columns: 1fr 28px;
+        }
+
+        .contact-band {
+          gap: 32px;
+          padding-block: 78px;
+        }
+
+        .contact-band h2 {
+          font-size: 48px;
+        }
+
+        .footer__inner {
+          align-items: flex-start;
+          flex-wrap: wrap;
+          padding-block: 6px;
+        }
+
+        .footer__inner > :nth-child(2) {
+          order: 3;
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <main>
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <video class="hero__video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_104303_0c6d60b2-9353-408e-9449-585108a22fb5.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__shade" aria-hidden="true"></div>
+
+        <div class="hero__inner">
+          <header class="topbar">
+            <a class="wordmark" href="#home" aria-label="Swarup Bandagale home">SB<span>.</span></a>
+            <nav class="nav-links" id="site-nav" aria-label="Main navigation">
+              <a href="#about">About</a>
+              <a href="#experience">Experience</a>
+              <a href="#education">Education</a>
+              <a href="#skills">Skills</a>
+              <a href="#projects">Projects</a>
+            </nav>
+            <a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+          </header>
+
+          <div class="hero__body">
+            <div class="hero__copy">
+              <p class="availability"><span class="availability__dot" aria-hidden="true"></span>Available for opportunities</p>
+              <p class="eyebrow">MBA Finance · Accounts Executive</p>
+              <h1 id="hero-title">Swarup <span>Bandagale.</span></h1>
+              <p class="hero__description">Finance and accounts professional bringing accuracy, clear analysis, and care to every operation.</p>
+              <div class="hero__actions">
+                <a class="button-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+                <a class="button-outline" href="#about">More about me <span aria-hidden="true">↓</span></a>
+              </div>
+            </div>
+
+            <aside class="hero__aside" aria-label="Professional focus">
+              <div class="aside-item">
+                <span>Focus</span>
+                <strong>Finance &amp; accounts</strong>
+              </div>
+              <div class="aside-item">
+                <span>Tools</span>
+                <strong>Tally Prime · Excel</strong>
+              </div>
+            </aside>
+          </div>
+
+          <div class="hero__foot">
+            <span>Based in Maharashtra, India</span>
+            <a href="#about">Scroll to explore ↓</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-inner reveal">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">01 / About me</p>
+              <h2>Grounded in detail.<br /><em>Focused on finance.</em></h2>
+            </div>
+            <span class="section-index">PROFILE / 2026</span>
+          </div>
+          <div class="about-grid">
+            <p class="about-note">Driven by numbers.<br />Built for accuracy.</p>
+            <p class="body-copy">Detail-oriented Accounts Executive with experience in billing, invoicing, and accounting records. MBA in Financial Management with strong skills in Tally Prime, Advanced Excel, GST, taxation, and financial analysis. Focused on accuracy, compliance, and efficient financial operations.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <div class="section-inner reveal">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">02 / Experience</p>
+              <h2>Professional <em>journey.</em></h2>
+            </div>
+            <span class="section-index">WORK / 01</span>
+          </div>
+          <article class="experience-row">
+            <span class="row-label">Aug 2026 — Present</span>
+            <div class="row-main">
+              <h3>Executive — Accounts</h3>
+              <p>Atharva Foundries Pvt. Ltd. (Yash Group of Industries)</p>
+              <p>MIDC Wai, Satara, Maharashtra</p>
+              <p>Billing, invoicing, accounting records, GST/PF/ESIC documentation, and vendor coordination.</p>
+            </div>
+            <span class="row-arrow" aria-hidden="true">↗</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <div class="section-inner reveal">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">03 / Education</p>
+              <h2>Academic <em>background.</em></h2>
+            </div>
+            <span class="section-index">STUDY / 02</span>
+          </div>
+          <div class="education-grid">
+            <article class="education-row">
+              <span class="row-label">2024 — 2026</span>
+              <div class="row-main">
+                <h3>MBA — Financial Management</h3>
+                <p>NBN Sinhgad Technical Institutes Campus, Pune</p>
+                <p>CGPA: 7.48 / 10 — First Class</p>
+              </div>
+              <span class="row-arrow" aria-hidden="true">↗</span>
+            </article>
+            <article class="education-row">
+              <span class="row-label">2021 — 2024</span>
+              <div class="row-main">
+                <h3>Bachelor of Commerce (B.Com)</h3>
+                <p>Kisan Veer Mahavidyalaya, Wai</p>
+                <p>CGPA: 6.42 / 10</p>
+              </div>
+              <span class="row-arrow" aria-hidden="true">↗</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-inner reveal">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">04 / Expertise</p>
+              <h2>Skills &amp; <em>tools.</em></h2>
+            </div>
+            <span class="section-index">CAPABILITIES / 04</span>
+          </div>
+          <div class="skills-grid">
+            <article class="skill">
+              <span class="skill__number">01</span>
+              <h3>Financial accounting</h3>
+              <p>Accounting operations, vouchers, and reconciliation.</p>
+            </article>
+            <article class="skill">
+              <span class="skill__number">02</span>
+              <h3>Microsoft Excel</h3>
+              <p>Data management, formulas, reports, and analysis.</p>
+            </article>
+            <article class="skill">
+              <span class="skill__number">03</span>
+              <h3>Tally &amp; GST</h3>
+              <p>Accounting software and taxation-related work.</p>
+            </article>
+            <article class="skill">
+              <span class="skill__number">04</span>
+              <h3>Financial analysis</h3>
+              <p>Working with financial data and business information.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="certifications">
+        <div class="section-inner reveal">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">05 / Certifications</p>
+              <h2>Professional <em>development.</em></h2>
+            </div>
+            <span class="section-index">CREDENTIALS / 04</span>
+          </div>
+          <div class="cert-list">
+            <article class="cert-row">
+              <span class="row-label">Nov 2025</span>
+              <div class="row-main">
+                <h3>Certified Course in Professional Accountant</h3>
+                <p>State Institute of Information Technology (SIIT)</p>
+                <p>Tally Prime, Payroll, Direct &amp; Indirect Tax, Advanced Excel, and Finalisation of Accounts.</p>
+              </div>
+              <span class="cert-result">97% · Grade A</span>
+            </article>
+            <article class="cert-row">
+              <span class="row-label">Nov 2025</span>
+              <div class="row-main">
+                <h3>Tally Prime with GST</h3>
+                <p>State Institute of Information Technology (SIIT)</p>
+              </div>
+              <span class="cert-result">Grade A</span>
+            </article>
+            <article class="cert-row">
+              <span class="row-label">Nov 2025</span>
+              <div class="row-main">
+                <h3>Advanced Excel</h3>
+                <p>State Institute of Information Technology (SIIT)</p>
+              </div>
+              <span class="cert-result">Grade A</span>
+            </article>
+            <article class="cert-row">
+              <span class="row-label">Dec 2023</span>
+              <div class="row-main">
+                <h3>English Typing — 30 WPM</h3>
+                <p>Maharashtra State Council of Examination, Pune</p>
+              </div>
+              <span class="cert-result">Grade B</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-inner reveal">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">06 / Selected work</p>
+              <h2>Projects &amp; <em>research.</em></h2>
+            </div>
+            <span class="section-index">MBA / OJT</span>
+          </div>
+          <div>
+            <a class="project-row" href="/swarup%20research%20project.pdf" target="_blank" rel="noreferrer">
+              <span class="row-label">MBA / 01</span>
+              <div class="row-main">
+                <h3>Research Project</h3>
+                <p>An empirical study on the financial risk tolerance of selected individuals and its impact on investment decisions in Pune District.</p>
+              </div>
+              <span class="row-arrow" aria-label="Open research project PDF">↗</span>
+            </a>
+            <a class="project-row" href="/swarup%20OJT%20project.pdf" target="_blank" rel="noreferrer">
+              <span class="row-label">OJT / 02</span>
+              <div class="row-main">
+                <h3>On The Job Training</h3>
+                <p>A study on loans and advances with reference to Wai Urban Co-operative Bank.</p>
+              </div>
+              <span class="row-arrow" aria-label="Open OJT project PDF">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-inner contact-band reveal" id="contact">
+        <div>
+          <p class="section-kicker">07 / Get in touch</p>
+          <h2>Let's create<br /><em>something valuable.</em></h2>
+        </div>
+        <div class="contact-details">
+          <a class="contact-link" href="mailto:swarupbandagale6@email.com"><span>Email</span><span>↗</span></a>
+          <a class="contact-link" href="https://linkedin.com/in/swarupbandagale-264a18190" target="_blank" rel="noreferrer"><span>LinkedIn</span><span>↗</span></a>
+          <a class="contact-link" href="tel:+917798208652"><span>+91 77982 08652</span><span>↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="wordmark" href="#home">SB<span>.</span></a>
+        <span>Designed with purpose. Built for the future.</span>
+        <span>© <span id="current-year">2026</span> Swarup Bandagale</span>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        const menuButton = document.querySelector('.menu-toggle');
+        const navigation = document.querySelector('#site-nav');
+        const video = document.querySelector('.hero__video');
+        const year = document.querySelector('#current-year');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        year.textContent = new Date().getFullYear();
+
+        menuButton.addEventListener('click', () => {
+          const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+          menuButton.setAttribute('aria-expanded', String(!isOpen));
+          navigation.classList.toggle('is-open', !isOpen);
+          menuButton.textContent = isOpen ? 'Menu' : 'Close';
+        });
+
+        navigation.addEventListener('click', (event) => {
+          if (event.target.closest('a')) {
+            menuButton.setAttribute('aria-expanded', 'false');
+            navigation.classList.remove('is-open');
+            menuButton.textContent = 'Menu';
+          }
+        });
+
+        const syncVideoMotion = () => {
+          if (reduceMotion.matches) {
+            video.pause();
+            return;
+          }
+
+          video.play().catch(() => {});
+        };
+
+        syncVideoMotion();
+        reduceMotion.addEventListener('change', syncVideoMotion);
+
+        const revealItems = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window && !reduceMotion.matches) {
+          const observer = new IntersectionObserver((entries, currentObserver) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                currentObserver.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12 });
+
+          revealItems.forEach((item) => observer.observe(item));
+        } else {
+          revealItems.forEach((item) => item.classList.add('is-visible'));
+        }
+      })();
+    </script>
   </body>
 </html>
